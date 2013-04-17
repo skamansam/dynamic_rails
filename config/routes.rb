@@ -1,4 +1,13 @@
 DynamicRails::Application.routes.draw do
+  resources :constraints
+
+
+  resources :lists
+
+
+  resources :list_items
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,29 @@
+<h1>Listing constraints</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>For type</th>
+    <th>Data options</th>
+    <th>Input options</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @constraints.each do |constraint| %>
+  <tr>
+    <td><%= constraint.name %></td>
+    <td><%= constraint.for_type %></td>
+    <td><%= constraint.data_options %></td>
+    <td><%= constraint.input_options %></td>
+    <td><%= link_to 'Show', constraint %></td>
+    <td><%= link_to 'Edit', edit_constraint_path(constraint) %></td>
+    <td><%= link_to 'Destroy', constraint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Constraint', new_constraint_path %>

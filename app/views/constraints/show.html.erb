@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @constraint.name %>
+</p>
+
+<p>
+  <b>For type:</b>
+  <%= @constraint.for_type %>
+</p>
+
+<p>
+  <b>Data options:</b>
+  <%= @constraint.data_options %>
+</p>
+
+<p>
+  <b>Input options:</b>
+  <%= @constraint.input_options %>
+</p>
+
+
+<%= link_to 'Edit', edit_constraint_path(@constraint) %> |
+<%= link_to 'Back', constraints_path %>
