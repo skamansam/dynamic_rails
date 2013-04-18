@@ -2,5 +2,5 @@
 class List < ActiveRecord::Base
   include DynamicTable
   has_many :list_items
-  attr_accessible :extra_data, :name, :type
+  attr_accessible :extra_data, :name, :type, :list_items
 end

@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(:version => 20130417193621) do
     t.string   "for_type"
     t.text     "data_options"
     t.text     "input_options"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "for_object_id"
+    t.string   "for_object_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "list_items", :force => true do |t|
