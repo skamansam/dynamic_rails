@@ -1,15 +1,13 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
-@shopping_list = Constraint.create!(
-  :name=>"Shopping List, minimal",
-  :for_type=>"shopping",
-  :data_options=>{
+
+# create a Shopping List constraint
+@c_shopping_list = Constraint.create!(
+  :name=>"Grocery List, minimal",              # the displayed name of the item
+  :class=>"grocery_list",                       # the class name for this object type
+  :contains=>["groceries","grocery_lists"],     # what objects we can have as children of this list
+  :data_options=>{                              # the actual constraints for the type.
     :budget=>{
       :type=>'currency'
     },
@@ -21,11 +19,60 @@
     }
   }
 )
+# create a Shopping List Item constraint
+@c_shopping_list_item = Constraint.create!(
+  :name=>"Grocery List Item",              # the displayed name of the item
+  :class=>"grocery",                       # the class name for this object type
+  :data_options=>{                              # the actual constraints for the type.
+    :name=>{
+      :type=>'string'
+    },
+    :price=>{
+      :type=>'currency'
+    },
+    :count=>{
+      :type=>'integer'
+    },
+    :bought=>{
+      :type=>'integer'
+    },
+    :completed=>{
+      :type=>'boolean'
+    },
+    :is_on_sale=>{
+      :type=>'boolean'
+    },
+    :price_on_sale=>{
+      :type=>'currency'
+    }
+  }
+)
+
+
+# creates a Reading List that has a pointer in the list 
+# to a child object, as well as a pointer to a parent object.
+# The parent object can be any valid object.
+@book_list = Constraint.create!(
+  :name=>"Reading List",
+  :class=>"reading_list",
+  :contains=>["books","reading_lists"],
+    :parent=>{
+      :type=>'object',
+      :constraint=>'Reading List'
+    },
+    :author=>{
+      :type=>'string'
+    },
+    :current_book=>{
+      :type=>'child'
+    }
+)
+
 
 list = List.create!(
   :name=>"Shopping List",
   :type=>"shopping",
-  :constraint=>@shopping_list,
+  :constraint=>@c_shopping_list,
   :extra_data=>{
     :budget=>100.00,
     :max_items=>3,

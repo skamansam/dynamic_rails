@@ -54,6 +54,14 @@ module DynamicTable
   def check_type_currency(obj)
     check_type_float(obj)
   end
+
+  def check_type_child(obj)
+    check_type_float(obj)
+  end
+
+  def check_type_object(obj)
+    check_type_float(obj)
+  end
   
   def validate_extra_data
     #valid_keys = constraint.data_options.map{|o| (o.is_a?(Hash) ? o.keys : o)}.flatten
@@ -72,8 +80,8 @@ module DynamicTable
     end
   end
 
-  def respond_to?(name, *args)
-    extra_data.has_key?(name)|| constraint.data_options.has_key?(name.to_sym) || super(name, *args)
-  end
+  #def respond_to?(name, *args)
+  #  extra_data.has_key?(name)|| constraint.data_options.has_key?(name.to_sym) || super(name, *args)
+  #end
 
 end
